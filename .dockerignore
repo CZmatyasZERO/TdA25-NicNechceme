@@ -1,0 +1,40 @@
+# Ignore node_modules (dependencies will be installed in the image)
+node_modules
+
+# Ignore the Next.js build directory
+.next
+
+# Ignore logs
+logs
+*.log
+
+# Ignore temporary files and directories
+.DS_Store
+*.swp
+*.swo
+Thumbs.db
+
+# Ignore Git-related files
+.git
+.gitignore
+
+# Ignore environment files (use Docker secrets instead)
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Ignore coverage files
+coverage
+
+# Ignore editor and IDE configuration files
+.vscode
+.idea
+
+# Ignore other unnecessary files
+*.bak
+*.tmp
+*.cache
+
+data
