@@ -1,0 +1,79 @@
+.header {
+    padding: 5px;
+    border-bottom: 1px solid #f6f6f6;
+}
+  
+  .inner {
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    background-color: white; /* assuming a white background; change as needed */
+  }
+
+  .footer {
+    padding: 10px 0;
+    border-top: 1px solid #f6f6f6;
+    text-align: center;
+  }
+  
+  .footerContent {
+    padding: 0 20px;
+  }
+
+
+  .page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+
+  .inner {
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    background-color: white; /* assuming a white background; change as needed */
+  }
+  
+  .mainContent {
+    flex: 1;
+    /* Add any padding or specific styles you need for your content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation-name: baf;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+  }
+  
+
+  .footerContent {
+    padding: 0 20px;
+  }
+  
+@keyframes baf {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
+import { Board, isValidBoard } from '../lib/tictactoe'; // Adjust the import path if necessary
 
 const GameSchema = new mongoose.Schema(
   {
@@ -8,7 +9,7 @@ const GameSchema = new mongoose.Schema(
       required: true,
       unique: true,
       index: true,
-      default: uuidv4, // Generate UUID for uuid field
+      default: uuidv4,
     },
     createdAt: {
       type: Date,
@@ -28,35 +29,34 @@ const GameSchema = new mongoose.Schema(
       required: true,
     },
     board: {
-      type: [[String]], // A 2D array of strings
+      type: [[String]],
       required: true,
       validate: {
-        validator: function (value: String[][]) {
-          return (
-            Array.isArray(value) &&
-            value.length === 15 && // Ensure 15 rows
-            value.every((row) => Array.isArray(row) && row.length === 15) // Ensure 15 columns per row
-          );
+        validator: function (value: string[][]) {
+          const { valid, message } = isValidBoard(value as Board);
+          if(!valid) {
+            throw new Error(message);
+          }
+          return true;
         },
-        message: 'Board must be a 15x15 grid of strings.',
       },
     },
   },
   {
     toJSON: {
-      virtuals: true, // Include virtuals
+      virtuals: true,
       transform: function (doc, ret) {
-        delete ret._id; // Remove _id from the response
-        delete ret.__v; // Remove __v from the response
-        delete ret.id
+        delete ret._id;
+        delete ret.__v;
+        delete ret.id;
       },
     },
     toObject: {
-      virtuals: true, // Include virtuals
+      virtuals: true,
       transform: function (doc, ret) {
-        delete ret._id; // Remove _id from the response
-        delete ret.__v; // Remove __v from the response
-        delete ret.id
+        delete ret._id;
+        delete ret.__v;
+        delete ret.id;
       },
     },
   }
@@ -72,7 +72,6 @@ GameSchema.pre('save', function (next) {
   this.updatedAt = new Date();
   next();
 });
-
 
 // Create the model
 const Game = mongoose.models.Game || mongoose.model('Game', GameSchema);

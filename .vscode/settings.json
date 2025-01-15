@@ -1,6 +1,8 @@
 {
     "files.exclude": {
         "**/.next": true,
-        "**/.vscode": true
+        "**/.vscode": true,
+        "**/data": true,
+        "**/node_modules": true
     }
 }
