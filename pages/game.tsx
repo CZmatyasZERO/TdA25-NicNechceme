@@ -65,7 +65,7 @@ export function GamePage({ savedGame }: { savedGame?: { board: Cell[][], name: s
             title: 'Úloha byla uložena',
             message: 'Uložení úlohy proběhlo úspěšně',
           });
-          router.replace('/games/' + response.data.uuid, undefined, { shallow: true })
+          router.replace('/game/' + response.data.uuid, undefined, { shallow: true })
           setIsModified(false);
         }
       });

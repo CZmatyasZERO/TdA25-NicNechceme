@@ -146,7 +146,7 @@ export default function IndexPage({ Games }: { Games: { board: Cell[][], name: s
                             <Text>{TdADifficulty[game.difficulty]}</Text>
                           </Group>
                           <Container flex={1}></Container>
-                          <Link href={"/games/"+game.uuid}><Button fullWidth>Spustit</Button></Link>
+                          <Link href={"/game/"+game.uuid}><Button fullWidth>Spustit</Button></Link>
                         </Stack>
                       </Flex>
                     </Paper>

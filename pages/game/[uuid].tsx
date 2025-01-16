@@ -1,8 +1,8 @@
-import type { Cell } from "./../../lib/tictactoe"
+import type { Cell } from "../../lib/tictactoe"
 import { connectToDatabase } from '../../lib/db';
 import Game from '../../models/Game';
 import { GetServerSidePropsContext } from 'next';
-import { GamePage } from "./../game";
+import { GamePage } from "../game";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     await connectToDatabase();

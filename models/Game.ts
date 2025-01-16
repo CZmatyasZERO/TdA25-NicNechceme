@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
-import { Board, isValidBoard } from '../lib/tictactoe'; // Adjust the import path if necessary
+import { Board, isValidBoard, getGameState } from '../lib/tictactoe'; // Adjust the import path if necessary
 
 const GameSchema = new mongoose.Schema(
   {
@@ -59,13 +59,16 @@ const GameSchema = new mongoose.Schema(
         delete ret.id;
       },
     },
+    virtuals: {
+      gameState: {
+        get() {
+          return getGameState(this.board as unknown as Board);
+        },
+      }
+    }
   }
 );
 
-// Virtual property for computed `gameState`
-GameSchema.virtual('gameState').get(function () {
-  return "unknown";
-});
 
 // Middleware to update `updatedAt` on save
 GameSchema.pre('save', function (next) {

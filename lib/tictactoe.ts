@@ -1,5 +1,8 @@
+export type Player = "X" | "O";
 export type Cell = "X" | "O" | "";
 export type Board = Cell[][];
+export type GameStates = "opening" | "midgame" | "endgame";
+export type Move = { x: number, y: number };
 
 export const createRandomBoard = (steps: number): Board => {
     const boardSize = 15; // Adjusted board size to 15x15
@@ -84,7 +87,7 @@ export const checkGameEnd = (board: Board): GameResult => {
     const boardSize = 15;
     const winLength = 5;
 
-    const checkLine = (line: Cell[]): "X" | "O" | null => {
+    const checkLine = (line: Cell[]): Player | null => {
         for (let i = 0; i <= line.length - winLength; i++) {
             let subArray = line.slice(i, i + winLength);
             if (subArray.every(cell => cell === "X")) {
@@ -146,7 +149,6 @@ export const checkGameEnd = (board: Board): GameResult => {
     return { finished: true, winner: undefined };
 };
 
-export type Move = { x: number, y: number };
 
 export const getAvailableMoves = (board: Board): Move[] => {
     const moves: Move[] = [];
@@ -167,7 +169,7 @@ type EvaluationResult = {
 
 
 
-export const getWinningMove = (board: Board, player: "X" | "O"): Move | null => {
+export const getWinningMove = (board: Board, player: Player): Move | null => {
     const availableMoves = getAvailableMoves(board);
     for(let i = 0; i < availableMoves.length; i++) {
         const move = availableMoves[i]
@@ -181,7 +183,7 @@ export const getWinningMove = (board: Board, player: "X" | "O"): Move | null => 
     return null
 }
 
-export const findBestMove = (board: Board, player: "X" | "O", timeLimit: number): Move => {
+export const findBestMove = (board: Board, player: Player, timeLimit: number): Move => {
     const winMove = getWinningMove(board, player)
     if(winMove) {
         return winMove
@@ -193,7 +195,7 @@ export const findBestMove = (board: Board, player: "X" | "O", timeLimit: number)
     return RandomMove(board, player)
 }
 
-export const RandomMove = (board: Board, player: "X" | "O"): Move => {
+export const RandomMove = (board: Board, player: Player): Move => {
     const moves = getAvailableMoves(board)
     const randomIndex = Math.floor(Math.random() * moves.length)
     return moves[randomIndex]
@@ -207,5 +209,34 @@ export const copyBoard = (board: Board): Board => {
     return newBoard
 }
 
+export const getOnTurn = (board: Board): Player => {
+    const moveCount = board.reduce((acc, row) => acc + row.filter((cell) => cell !== "").length, 0)
+    const onTurn = moveCount % 2 === 0 ? "X" : "O"
+    return onTurn
+}
+
+export const isDraw = (board: Board): boolean => {
+    return !(board.flat().some(cell => cell === ""))
+}
+
+export const getRound = (board: Board): number => {
+  return board.flat().filter(cell => cell !== "").length / 2
+}
+
+export const getGameState = (board: Board):GameStates => {
+    if(isDraw(board)) {
+        return "endgame";
+      } else {
+        if(getWinningMove(board as unknown as Board, getOnTurn(board))) {
+          return "endgame";
+        } else {
+          if(getRound(board) >= 5) {
+            return "midgame";
+          } else {
+            return "opening";
+          }
+        }
+    }
+}
 
 const MAX_DEPTH = 3;
