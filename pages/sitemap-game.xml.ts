@@ -6,18 +6,11 @@ const EXTERNAL_DATA_URL = 'https://04f1241e.app.deploy.tourde.app';
 function generateSiteMap(games: { uuid: string, updatedAt: Date }[]) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <!--We manually set the two URLs we know already-->
-     <url>
-       <loc>https://example.com</loc>
-     </url>
-     <url>
-       <loc>https://example.com/guide</loc>
-     </url>
      ${games
        .map(({ uuid, updatedAt }) => {
          return `
        <url>
-           <loc>${`${EXTERNAL_DATA_URL}/${uuid}`}</loc>
+           <loc>${`${EXTERNAL_DATA_URL}/game/${uuid}`}</loc>
            <lastmod>${updatedAt.toISOString()}</lastmod>
        </url>
      `;
