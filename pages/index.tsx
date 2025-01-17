@@ -2,8 +2,7 @@
 import { Group, Title, Center, Flex, Container, Button, BackgroundImage } from "@mantine/core";
 import Head from "next/head";
 import MainLayout from "./layouts/main";
-import Board from "../components/board";
-import { createRandomBoard } from "../lib/tictactoe";
+import Link from "next/link";
 
 export default function IndexPage() {
   return (
@@ -20,7 +19,7 @@ export default function IndexPage() {
             <Title order={2} size={32}>
               S naší platformou si procvičíš logiku, strategii a taktické myšlení, ať už jsi úplný začátečník nebo zkušený hráč. Připrav se na výzvu a ukaž, co v tobě je!
             </Title>
-            <Button size="xl">Začít hrát</Button>
+            <Link href="/game" prefetch><Button size="xl">Začít hrát</Button></Link>
           </Container>
       </MainLayout>
     </>

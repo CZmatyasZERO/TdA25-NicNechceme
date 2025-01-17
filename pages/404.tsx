@@ -22,7 +22,7 @@ import Link from "next/link";
                 Nemáte na mysli, že se nám jedná o stránku, kterou hledáte? Pokud to není tak, zkuste nám prosím kontaktovat.
               </Title>
               <Group>
-                <Link href="/" prefetch>
+                <Link href="/puzzles" prefetch>
                   <Button size="xl">Zpět na úlohy</Button>
                 </Link>
                 <Link href="/about" prefetch>
