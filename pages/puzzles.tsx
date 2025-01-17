@@ -60,7 +60,7 @@ export default function IndexPage({ Games }: { Games: { board: Cell[][], name: s
     });
   }
 
-  const gamesChunks = chunk(filteredGames, 12)
+  const gamesChunks = chunk(filteredGames, 9)
   const displayedGames = gamesChunks[activePage - 1]
 
   return (
