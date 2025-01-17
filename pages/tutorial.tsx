@@ -36,7 +36,7 @@ export default function TermsOfUsePage() {
                 <Flex wrap="wrap" gap={15}>
                   
                   <Text flex={1} style={{ minWidth: 300 }}>
-                    Pokud se nahoře přepnete kartu na "Nastavení", zobrazí se vám formulář pro nastavení hry.
+                    Pokud se nahoře přepnete kartu na &quot;Nastavení&quot;, zobrazí se vám formulář pro nastavení hry.
                     <br />
                     Režim pro dotykové obrazovky - pro zahrání hry bude potřeba kliknout dvakrát na pole. Hlavní účel je omezení překliků. Vhodné pro mobilní zařízení.
                     <br />

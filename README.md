@@ -12,7 +12,7 @@
 
 
 ### local
-nejdřív je potřeba aplikaci sestavit
+nejdřív je potřeba aplikaci sestavit:
 ```bash
   npm run build
 ```
@@ -28,7 +28,7 @@ nejdřív je potřeba kontejner sestavit:
   docker build . -t TdA2025
 ```
 
-spuštění kontejneru
+spuštění kontejneru:
 ```bash
   docker run -p 3000:3000 TdA2025:latest
 ```
