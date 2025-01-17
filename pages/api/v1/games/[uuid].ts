@@ -63,7 +63,7 @@ const handleDelete = async (req: NextApiRequest, res: NextApiResponse) => {
       message: "Resource not found",
     });
   }
-  res.status(200).send("OK");
+  res.status(204).send("OK");
 };
 
 // Export the API route

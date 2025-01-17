@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { CSSProperties, ReactNode, useState } from 'react';
 import { Burger, Button, Group, Flex, Text } from '@mantine/core';
 import Image from 'next/image';
 import classes from './main.module.css';
@@ -13,10 +13,11 @@ const links = [
 ];
 
 interface MainLayoutProps {
-  children: ReactNode;
+  children: ReactNode,
+  style?: CSSProperties
 }
 
-export default function MainLayout({ children }: MainLayoutProps) {
+export default function MainLayout({ children, style }: MainLayoutProps) {
   const [opened, setOpened] = useState(false);
 
   const items = links.map((link) => (
@@ -55,7 +56,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
         )}
       </header>
 
-      <main className={classes.mainContent}>{children}</main>
+      <main className={classes.mainContent} style={style}>{children}</main>
 
       <footer className={classes.footer}>
         <Flex justify="center" align="center" direction="row" className={classes.footerContent}>

@@ -1,0 +1,6 @@
+user-agent: *
+allow: /
+disallow: /api
+disallow: /404
+
+sitemap: https://04f1241e.app.deploy.tourde.app/sitemap.xml

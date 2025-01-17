@@ -180,6 +180,9 @@ export function GamePage({ savedGame }: { savedGame?: { board: Cell[][], name: s
                         <Stack gap={10} align="center">
                           <TdAIcon type={gameResult.winner ? gameResult.winner : "Thinking"} size={100} color={gameResult.winner ? (gameResult.winner === "X" ? "blue" : "red") : "black"} />
                           <Title order={3}>{gameResult.winner ? "Vyhráli " + (gameResult.winner == "X" ? "křížky!" : "kolečka!") : "Remíza"}</Title>
+                          <Group>
+                            <Button onClick={() => router.reload()}>Opakovat</Button>
+                          </Group>
                         </Stack>
                       </Paper>
                       

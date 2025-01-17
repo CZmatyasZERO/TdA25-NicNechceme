@@ -192,7 +192,32 @@ export const findBestMove = (board: Board, player: Player, timeLimit: number): M
     if(loseMove) {
         return loseMove
     }
-    return RandomMove(board, player)
+    const availableMoves = getAvailableMoves(board)
+
+    interface moveScoreItem {
+        move: Move,
+        score: number
+    }
+
+    function distanceToOthers(board: Board, move: Move): number {
+        let totalDistance = 0;
+        let occupiedCount = 0;
+        
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[i].length; j++) {
+                if (board[i][j] !== "") {
+                    const distance = Math.sqrt(Math.pow(move.x - i, 2) + Math.pow(move.y - j, 2));
+                    totalDistance += distance;
+                    occupiedCount++;
+                }
+            }
+        }
+        
+        return occupiedCount > 0 ? totalDistance / occupiedCount : 0;
+    }
+
+    const sortedMoves = availableMoves.sort((a, b) => distanceToOthers(board, a) - distanceToOthers(board, b))
+    return sortedMoves[0] 
 }
 
 export const RandomMove = (board: Board, player: Player): Move => {

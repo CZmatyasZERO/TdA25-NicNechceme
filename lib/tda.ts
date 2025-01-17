@@ -5,3 +5,9 @@ export const TdADifficulty = {
     hard: "těžká",
     extreme: "nejtežší",
 }
+
+export const TdAGameState = {
+    opening: "Zahájení",
+    midgame: "Střední hra",
+    endgame: "Koncovka",
+}

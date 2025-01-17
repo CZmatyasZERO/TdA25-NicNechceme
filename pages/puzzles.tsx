@@ -10,7 +10,7 @@ import Game from '../models/Game';
 import { GetServerSidePropsContext } from 'next';
 import { Cell } from "./../lib/tictactoe";
 import Board from "../components/board";
-import { TdADifficulty } from "./../lib/tda"
+import { TdADifficulty, TdAGameState } from "./../lib/tda"
 import Link from "next/link"
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
@@ -20,7 +20,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 
-export default function IndexPage({ Games }: { Games: { board: Cell[][], name: string, difficulty: "beginner" | "easy" | "medium" | "hard" | "extreme", uuid: string, updatedAt: string }[] }) {
+export default function IndexPage({ Games }: { Games: { board: Cell[][], name: string, difficulty: "beginner" | "easy" | "medium" | "hard" | "extreme", uuid: string, updatedAt: string, gameState: "opening" | "midgame" | "endgame" }[] }) {
   const [difficulty, setDifficulty] = useState<string|null>(null);
   const [lastUpdate, setLastUpdate] = useState<string|null>(null);
   const [searchPrompt, setSearchPrompt] = useState<string>("");
@@ -136,7 +136,7 @@ export default function IndexPage({ Games }: { Games: { board: Cell[][], name: s
                       style={{ width: "32%", minWidth: "300px", padding: "5px" }}
                     >
                       <Flex wrap="wrap" justify="center">
-                        <Flex justify="center" align="center" flex={1} style={{minWidth: "200px", maxWidth: "300px", padding: "1%"}}>
+                        <Flex justify="center" align="center" flex={1} style={{minWidth: "150px", maxWidth: "300px", padding: "1%"}}>
                           <Board fullWidth board={game.board} />
                         </Flex>
                         <Stack style={{width: "300px", padding: "5px"}}>
@@ -145,6 +145,7 @@ export default function IndexPage({ Games }: { Games: { board: Cell[][], name: s
                             <TdAIcon color="blue" type={game.difficulty} size={30}/>
                             <Text>{TdADifficulty[game.difficulty]}</Text>
                           </Group>
+                          <Text>{TdAGameState[game.gameState]}</Text>
                           <Container flex={1}></Container>
                           <Link href={"/game/"+game.uuid}><Button fullWidth>Spustit</Button></Link>
                         </Stack>
