@@ -4,6 +4,7 @@ import { useState } from "react";
 import MainLayout from "./layouts/main";
 import { useForm, zodResolver } from "@mantine/form";
 import { notifications } from '@mantine/notifications';
+import axios from 'axios';
 import { z } from "zod";
 
 // Define the form schema using Zod
@@ -23,12 +24,19 @@ export default function AboutUsPage() {
     validate: zodResolver(contactFormSchema),
   });
 
-  const handleSubmit = (values: typeof form.values) => {
-    console.log("Form submitted with: ", values);
-    notifications.show({
-      title: 'Zpráva odeslána',
-      message: 'Zpráva byla úspěšně odeslána',
-    });
+  const handleSubmit = async (values: typeof form.values) => {
+    try {
+      await axios.post('/api/v0/message', values);
+      notifications.show({
+        title: 'Zpráva odeslána',
+        message: 'Zpráva byla úspěšně odeslána',
+      });
+    } catch (error) {
+      notifications.show({
+        title: 'Chyba při odesílání',
+        message: 'Došlo k chybě při odesílání zprávy',
+      });
+    }
   };
 
   return (

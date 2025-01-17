@@ -75,7 +75,7 @@ export function GamePage({ savedGame }: { savedGame?: { board: Cell[][], name: s
   };
 
   function editPuzzleSubmit(values: any) {
-    let data = {...values, board: savedGame?.board}
+    let data = {...values, board: board}
     try {
       axios.post('/api/v1/games', data).then((response) => {
         if(response.status === 201) {
