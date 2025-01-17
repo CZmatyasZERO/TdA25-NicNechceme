@@ -77,8 +77,8 @@ export function GamePage({ savedGame }: { savedGame?: { board: Cell[][], name: s
   function editPuzzleSubmit(values: any) {
     let data = {...values, board: board}
     try {
-      axios.post('/api/v1/games', data).then((response) => {
-        if(response.status === 201) {
+      axios.put('/api/v1/games', data).then((response) => {
+        if(response.status === 200) {
           notifications.show({
             title: 'Úloha byla upravena',
             message: 'ˇUpravení úlohy proběhlo úspěšně',
