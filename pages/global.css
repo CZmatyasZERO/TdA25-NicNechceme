@@ -1,29 +1,40 @@
-@font-face {
-  font-family: 'Dosis';
-  src: url('/Dosis.ttf') format('truetype');
-}
-  
-body {
-  font-family: 'Dosis', sans-serif;
+:root {
+  --tda-blue: #0070bb;
+  --tda-red: #e31837;
+  --tda-darker-blue: #395a9a;
+  --tda-darker-red: #ab2e58;
+  --tda-black: #080808;
+  --tda-light-black: #1a1a1a;
+  --tda-white: #ffffff;
+  --tda-darker-white: #f6f6f6;
+  --tda-purple: #724479;
 }
 
+@font-face {
+  font-family: "Dosis";
+  src: url("/Dosis.ttf") format("truetype");
+}
+
+body {
+  font-family: "Dosis", sans-serif;
+}
 
 /* unvisited link */
 a:link {
-  color: #0070bb;
+  color: var(--tda-blue);
 }
 
 /* visited link */
 a:visited {
-  color: #724479;
+  color: var(--tda-purple);
 }
 
 /* mouse over link */
 a:hover {
-  color: #395a9a;
+  color: var(--tda-darker-blue);
 }
 
 /* selected link */
 a:active {
-  color: #395a9a;
+  color: var(--tda-darker-blue);
 }

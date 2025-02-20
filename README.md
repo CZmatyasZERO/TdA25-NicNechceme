@@ -1,34 +1,40 @@
 # TdA 2025 - Nic nechceme
 
 - **Název týmu**: Nic nechceme
-- **Členové**:  Matyáš Klimeš, Immamadin Babayev, Štěpán Helbich
+- **Členové**: Matyáš Klimeš, Immamadin Babayev, Štěpán Helbich
 - **Rok**: 2025
 
 ## Spuštění aplikace
-- je potřeba mít nainstalováno:
-    - Node.js v22.12.0
-    - npm (většinou se instaluje s node.js)
-    - docker (pokud spouštíme v kontejneru)
 
+- je potřeba mít nainstalováno:
+  - Node.js v22.12.0
+  - npm (většinou se instaluje s node.js)
+  - docker (pokud spouštíme v kontejneru)
 
 ### local
+
 nejdřív je potřeba aplikaci sestavit:
+
 ```bash
   npm run build
 ```
 
 spuštění aplikace lokálně (port 3000):
+
 ```bash
   npm start
 ```
 
 ### docker
+
 nejdřív je potřeba kontejner sestavit:
+
 ```bash
   docker build . -t TdA2025
 ```
 
 spuštění kontejneru:
+
 ```bash
   docker run -p 3000:3000 TdA2025:latest
 ```
@@ -38,8 +44,11 @@ spuštění kontejneru:
 - Next.js - framework
 - Mantine UI - UI knihovna
 - MongoDB - databáze (zabudovaná přímo v aplikaci)
-projekt používá typescript
-
+- Playwright - testovací framework
+- Zod - validace dat
+- ESLint - statická analýza kódu
+- Prettier - formátování kódu
+  projekt používá typescript
 
 ## Vlastnosti
 

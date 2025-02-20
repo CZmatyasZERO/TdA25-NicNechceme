@@ -1,0 +1,12 @@
+name: comment
+description: Comment on a code snippet
+version: 1.0.0
+---
+@currentFile
+
+Comment on the code snippet above. Make brief comments on the code only when its REALLY REALLY neccessary, explaining what it does and how it works. You dont have
+to comment everything. Do not explain the code in detail,
+just explain it in a short sentence. Use only inline comments. Do not write any code. Do not make comments in jsx. Do not make comments above function when purpose
+is obvious from the function name. Make commnets on empty lines above code you are commenting. I want only really neccessary comments. Do not make comments
+on code that is not obviously needed. Do not make comments on code that is not related to the code snippet. Do not make comments on the same line as the code.
+Write full code with comments. Do not short or modify code.

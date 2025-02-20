@@ -19,7 +19,8 @@
       "@/models": ["./models"],
       "@/lib": ["./lib"],
       "@/pages": ["./pages"],
-      "@/actions": ["./actions"],
+      "@/components": ["./components"],
+      "@/assets": ["./assets"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

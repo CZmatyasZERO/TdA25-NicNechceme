@@ -1,8 +1,8 @@
 import mongoose from "mongoose"
 import { v4 as uuidv4 } from "uuid"
-import { isValidBoard, getGameState } from "../lib/tictactoe" // Adjust the import path if necessary
+import { isValidBoard, getGameState, createEmptyBoard, checkGameEnd } from "../lib/tictactoe"
 
-const GameSchema = new mongoose.Schema(
+const GuestplaySchema = new mongoose.Schema(
   {
     uuid: {
       type: String,
@@ -11,22 +11,27 @@ const GameSchema = new mongoose.Schema(
       index: true,
       default: uuidv4,
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-    updatedAt: {
-      type: Date,
-      default: Date.now,
-    },
-    name: {
+    creatorSessionId: {
       type: String,
       required: true,
     },
-    difficulty: {
+    opponentSessionId: {
       type: String,
-      enum: ["beginner", "easy", "medium", "hard", "extreme"],
+      required: false,
+    },
+    lastMoveX: {
+      type: Number,
       required: true,
+      default: 0,
+    },
+    lastMoveY: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    creatorStarts: {
+      type: Boolean,
+      default: randomBoolean,
     },
     board: {
       type: [[String]],
@@ -40,6 +45,7 @@ const GameSchema = new mongoose.Schema(
           return true
         },
       },
+      default: createEmptyBoard,
     },
   },
   {
@@ -60,22 +66,20 @@ const GameSchema = new mongoose.Schema(
       },
     },
     virtuals: {
-      gameState: {
+      finished: {
         get() {
-          return getGameState(this.board as unknown as Board)
+          return checkGameEnd(this.board as unknown as Board).finished
         },
       },
     },
   },
 )
 
-// Middleware to update `updatedAt` on save
-GameSchema.pre("save", function (next) {
-  this.updatedAt = new Date()
-  next()
-})
+function randomBoolean() {
+  return Math.random() >= 0.5
+}
 
 // Create the model
-const Game = mongoose.models.Game || mongoose.model("Game", GameSchema)
+const GuestPlay = mongoose.models.GuestPlay || mongoose.model("GuestPlay", GuestplaySchema)
 
-export default Game
+export default GuestPlay

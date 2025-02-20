@@ -1,6 +1,6 @@
-import { Container, Title, Text, Flex, Center, ScrollArea } from "@mantine/core";
-import Head from "next/head";
-import MainLayout from "./layouts/main";
+import { Container, Title, Text, Flex, Center, ScrollArea } from "@mantine/core"
+import Head from "next/head"
+import MainLayout from "./layouts/main"
 
 export default function TermsOfUsePage() {
   return (
@@ -18,35 +18,41 @@ export default function TermsOfUsePage() {
                   Podmínky užívání
                 </Title>
                 <Text size="md">
-                  Vítejte na platformě Think different Academy. Přečtěte si prosím tyto podmínky užívání pozorně, než začnete používat naše služby. Vaše další užívání webu znamená souhlas s těmito podmínkami.
+                  Vítejte na platformě Think different Academy. Přečtěte si prosím tyto podmínky užívání pozorně, než začnete používat naše služby.
+                  Vaše další užívání webu znamená souhlas s těmito podmínkami.
                 </Text>
 
                 <Title order={2} style={{ marginTop: 30 }}>
                   Využívání služby
                 </Title>
                 <Text size="md">
-                  Platforma je poskytována pro vzdělávací a zábavní účely. Uživatelé se zavazují využívat službu v souladu se všemi příslušnými zákony.
+                  Platforma je poskytována pro vzdělávací a zábavní účely. Uživatelé se zavazují využívat službu v souladu se všemi příslušnými
+                  zákony.
                 </Text>
 
                 <Title order={2} style={{ marginTop: 30 }}>
                   Ochrana osobních údajů
                 </Title>
                 <Text size="md">
-                  Vaše soukromí je pro nás důležité. Sbíráme osobní údaje jako jméno, e-mailová adresa a další informace potřebné pro poskytování našich služeb. Tyto údaje shromažďujeme s vaším souhlasem a zpracováváme je dle platných právních předpisů. Můžete kdykoliv požádat o přístup k osobním údajům, jejich opravu nebo výmaz.
+                  Vaše soukromí je pro nás důležité. Sbíráme osobní údaje jako jméno, e-mailová adresa a další informace potřebné pro poskytování
+                  našich služeb. Tyto údaje shromažďujeme s vaším souhlasem a zpracováváme je dle platných právních předpisů. Můžete kdykoliv požádat
+                  o přístup k osobním údajům, jejich opravu nebo výmaz.
                 </Text>
 
                 <Title order={2} style={{ marginTop: 30 }}>
                   Odpovědnost za obsah
                 </Title>
                 <Text size="md">
-                  I když děláme vše pro to, aby byl obsah aktuální a přesný, nemůžeme garantovat jeho úplnost nebo věcnou správnost. Využívání obsahu je na vlastní riziko uživatele.
+                  I když děláme vše pro to, aby byl obsah aktuální a přesný, nemůžeme garantovat jeho úplnost nebo věcnou správnost. Využívání obsahu
+                  je na vlastní riziko uživatele.
                 </Text>
 
                 <Title order={2} style={{ marginTop: 30 }}>
                   Změny podmínek
                 </Title>
                 <Text size="md">
-                  Vyhrazujeme si právo kdykoliv změnit tyto podmínky. Jakékoliv změny vstupují v platnost okamžitě po zveřejnění na naší webové stránce.
+                  Vyhrazujeme si právo kdykoliv změnit tyto podmínky. Jakékoliv změny vstupují v platnost okamžitě po zveřejnění na naší webové
+                  stránce.
                 </Text>
 
                 <Title order={2} style={{ marginTop: 30 }}>
@@ -61,5 +67,5 @@ export default function TermsOfUsePage() {
         </Center>
       </MainLayout>
     </>
-  );
+  )
 }

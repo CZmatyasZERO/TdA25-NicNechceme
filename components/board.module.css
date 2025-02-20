@@ -1,53 +1,53 @@
 .board {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    justify-items: stretch;
-    max-width: 500px;
-    max-height: 500px;
-    aspect-ratio: 1;
-    border-collapse: collapse;
-    gap: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  justify-items: stretch;
+  max-width: 500px;
+  max-height: 500px;
+  aspect-ratio: 1;
+  border-collapse: collapse;
+  gap: 1%;
 }
 
 .row {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    justify-items: stretch;
-    width: 100%;
-    flex: 1;
-    flex-grow: 1;
-    gap: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  justify-items: stretch;
+  width: 100%;
+  flex: 1;
+  flex-grow: 1;
+  gap: 1%;
 }
 
 .cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    background-color: #f6f6f6;
-    flex: 1;
-    flex-grow: 1;
-    aspect-ratio: 1;
-    user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  background-color: #f6f6f6;
+  flex: 1;
+  flex-grow: 1;
+  aspect-ratio: 1;
+  user-select: none;
 }
 
 .cell * {
-    display: inline;
-    width: 90%;
-    height: 90%;
-    
-    margin: 0;
-    padding: 0;
-    user-select: none;
-    aspect-ratio: 1;
+  display: inline;
+  width: 90%;
+  height: 90%;
+
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  aspect-ratio: 1;
 }
 
 .cell .empty {
-    width: 100%;
-    height: 100%;
-    display: inline-block;
-    cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  cursor: pointer;
 }

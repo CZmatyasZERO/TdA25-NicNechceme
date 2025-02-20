@@ -36,5 +36,11 @@ coverage
 *.bak
 *.tmp
 *.cache
+*.md
 
 data
+
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

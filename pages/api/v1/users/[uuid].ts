@@ -2,19 +2,17 @@ import type { NextApiRequest, NextApiResponse } from "next"
 import { z } from "zod"
 import { methodRouter } from "../../../../lib/methodRouter" // Adjust path accordingly
 import { connectToDatabase } from "../../../../lib/db"
-import Game from "../../../../models/Game"
+import User from "../../../../models/User"
 
 // Validation schema for PUT body
-const boardSchema = z.array(z.array(z.string()))
-const difficultySchema = z.union([z.literal("beginner"), z.literal("easy"), z.literal("medium"), z.literal("hard"), z.literal("extreme")])
-
 const putBodySchema = z
   .object({
-    name: z.string().min(1, "Name is required"), // A non-empty name is required
-    difficulty: difficultySchema, // Validate difficulty
-    board: boardSchema, // Validate the board structure
+    username: z.string().min(1, "Username is required"),
+    email: z.string().email("Invalid email address"),
+    elo: z.number().int("Elo must be an integer"),
+    password: z.string().min(1, "Password is required"),
   })
-  .strict() // Ensure all properties are present
+  .strict()
 
 // Define the types based on the schemas
 type PutBodyType = z.infer<typeof putBodySchema>
@@ -22,48 +20,52 @@ type PutBodyType = z.infer<typeof putBodySchema>
 // GET handler
 const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectToDatabase()
-  const game = await Game.findOne({ uuid: req.query.uuid })
-  if (!game) {
+  const user = await User.findOne({ uuid: req.query.uuid as string })
+  if (!user) {
     return res.status(404).json({
       code: 404,
       message: "Resource not found",
-    } as errorMessage)
+    })
   }
-  res.status(200).json(game)
+  res.status(200).json(user)
 }
 
 // PUT handler
 const handlePut = async (req: NextApiRequest, res: NextApiResponse, data: PutBodyType) => {
   await connectToDatabase()
 
-  const game = await Game.findOne({ uuid: req.query.uuid })
-  if (!game) {
+  const user = await User.findOne({ uuid: req.query.uuid as string })
+  if (!user) {
     return res.status(404).json({
       code: 404,
       message: "Resource not found",
-    } as errorMessage)
+    })
   }
 
-  game.name = data.name
-  game.difficulty = data.difficulty
-  game.board = data.board
+  user.username = data.username
+  user.email = data.email
+  user.elo = data.elo
+  if (!(await user.comparePassword(data.password))) {
+    user.password = data.password
+  }
 
   try {
-    await game.save()
-    res.status(200).json(game)
+    await user.save()
+    res.status(200).json(user)
   } catch (error: any) {
-    res.status(422).json({ code: 422, message: error.message } as errorMessage)
+    res.status(422).json({ code: 422, message: error.message })
   }
 }
 
+// DELETE handler
 const handleDelete = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectToDatabase()
-  const game = await Game.findOneAndDelete({ uuid: req.query.uuid })
-  if (!game) {
+  const user = await User.findOneAndDelete({ uuid: req.query.uuid as string })
+  if (!user) {
     return res.status(404).json({
       code: 404,
       message: "Resource not found",
-    } as errorMessage)
+    })
   }
   res.status(204).send("OK")
 }
