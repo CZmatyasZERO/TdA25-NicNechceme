@@ -9,6 +9,8 @@ const TicTacToeBoard = (params: {
   interative?: boolean
   lines?: boolean
   fullWidth?: boolean
+  emphasize?: Move
+  style?: React.CSSProperties
 }) => {
   let gap: number | string = "1%"
   if (params.lines) {
@@ -17,7 +19,7 @@ const TicTacToeBoard = (params: {
     gap = params.gap ? params.gap : "1%"
   }
   return (
-    <div className={classes.board} style={{ gap, width: params.fullWidth ? "100%" : undefined }}>
+    <div className={classes.board} style={{ ...params.style, gap, width: params.fullWidth ? "100%" : undefined }}>
       {params.board.map((row, i) => (
         <div key={i} style={{ gap }} className={classes.row}>
           {row.map((cell, j) => (

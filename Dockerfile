@@ -7,6 +7,11 @@ WORKDIR /app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
+# Set environment variables
+ENV NODE_ENV production
+ENV PASSWORD_HASH_COMPLEXITY 10
+ENV SECRET_SESSION_PASSWORD aiECWSi8zCVMhgdSrsA5610OaskX4uXS
+
 # Install dependencies
 RUN npm install
 

@@ -2,6 +2,7 @@ import { z, ZodError, ZodType } from "zod"
 import type { NextApiRequest, NextApiResponse } from "next"
 import { getIronSession, IronSession } from "iron-session"
 import { v4 as uuidv4 } from "uuid"
+import type { NextApiResponseWithSocket } from "../pages/api/socket"
 
 const sessionOptions = {
   password: process.env.SECRET_SESSION_PASSWORD as string,
@@ -15,7 +16,7 @@ const sessionOptions = {
 type HandlerWithSchema<T> = {
   handler: (
     req: NextApiRequest, // Original Next.js Request and Response objects
-    res: NextApiResponse,
+    res: NextApiResponseWithSocket,
     data: T,
     session: IronSession<SessionData>, // Include session in the handler's parameters
   ) => Promise<void>
@@ -24,10 +25,10 @@ type HandlerWithSchema<T> = {
 
 export const methodRouter =
   <T>(handlers: { [method: string]: HandlerWithSchema<T> }) =>
-  async (req: NextApiRequest, res: NextApiResponse) => {
+  async (req: NextApiRequest, res: NextApiResponseWithSocket) => {
     try {
       // Retrieve the session using getIronSession
-      const session = await getIronSession(req, res, sessionOptions) as IronSession<SessionData>
+      const session = (await getIronSession(req, res, sessionOptions)) as IronSession<SessionData>
 
       if (!session.uuid) {
         session.uuid = uuidv4()

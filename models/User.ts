@@ -20,6 +20,11 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    admin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
     email: {
       type: String,
       required: true,
@@ -32,6 +37,7 @@ const UserSchema = new mongoose.Schema(
     elo: {
       type: Number,
       required: true,
+      default: 400,
     },
     wins: {
       type: Number,
@@ -44,6 +50,14 @@ const UserSchema = new mongoose.Schema(
     draws: {
       type: Number,
       default: 0,
+    },
+    banned: {
+      type: Boolean,
+      default: false,
+    },
+    findingRanked: {
+      type: Boolean,
+      default: false,
     },
   },
   {
@@ -79,7 +93,7 @@ UserSchema.pre("save", async function (next) {
 
 // Password verification method
 UserSchema.methods.comparePassword = async function (candidatePassword: string) {
-  return bcrypt.compare(candidatePassword, this.password)
+  return await bcrypt.compare(candidatePassword, this.password)
 }
 
 // Create the model

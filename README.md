@@ -44,8 +44,8 @@ spuštění kontejneru:
 - Next.js - framework
 - Mantine UI - UI knihovna
 - MongoDB - databáze (zabudovaná přímo v aplikaci)
-- Playwright - testovací framework
 - Zod - validace dat
+- Socket.IO - komunikace při hraní
 - ESLint - statická analýza kódu
 - Prettier - formátování kódu
   projekt používá typescript
